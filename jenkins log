@@ -1,0 +1,67 @@
+             Push jenkins log into mail
+
+ Go to manage plugin
+ Install plugin email extension 
+
+
+
+ Now goto configuration system
+Scroll down -you will see email notification
+
+
+
+Enter smtp.gmail.com in gmail section
+After that select Use SMTP Authentication
+User Name -@gmail.com -select your email id
+Select following step -for password
+goto your mail page with your email id 
+manage your google account 
+
+Select security field 
+Under "Signing in to Google," select App Passwords. You may need to sign in. If you don’t have this option,  it might be because
+At the bottom, choose Select app and choose the app you using and then Select device -as a custom- and choose the device you’re using and then Generate.
+
+
+
+Your password will generated paste that password in jenkin page -see above (as mention in red dot line)
+Give smtp port 465
+Select test configuration (in below or last line)
+Enter your mail id -on Test e-mail recipient field
+Select test configuration
+You will see output
+Email was successfully sent
+Now goto Extended E-mail Notification
+Paste smtp.gmail.com in gmail section
+SMTP Port-465
+Select advance
+Credentials-add
+Set your username and password which you already set in email notification in above just do copy paste
+Username-your email id 
+Password-
+You will see your id will show in credential
+Select your id 
+Select use ssl
+Then select default trigger option
+
+Select always ,failure ,success option for email notification
+Then apply and save
+Now create item
+Select freestyle project then ok
+After that select last option -post-build-option
+. Select Editable Email Notification
+
+Project Reply-To List-paste email in that field-where you want to send log notifcation
+
+After that select build option 
+Add build  execution shell
+
+Paste wrong command in that shell
+Apply
+Save
+After buld now your code
+Check output console
+check laste line- log will send to your email
+
+Now check your email 
+Your log will show
+
