@@ -1,0 +1,62 @@
+Configure master & slave in windows
+
+ First launch your jenkin instance (install jenkin in that     instance)
+Login to your jenkin page
+
+Go to manage jenking
+Go to manage cloud and node
+Create node 
+Give name 
+Give root directory-C:\agent
+Give label name -anythin
+Usage -select 2nd option
+Custom WorkDir path-C:\agent
+Select use websocket
+Now launch windows instance
+ After launching -select -connect -and get rdp
+
+First get password -then then decrypt your private key 
+Now download remote desktop file 
+Now your will see your remote desktop server 
+Go to your remote desktop server 
+Download java with same version which present jenkin instance
+Install java
+Now configure java : select following steps
+First search in windows : Edit the system environment
+Select new environment
+Enter new 
+Give variable name : JAVA_HOME
+Give path -C:\Program Files\Java\jdk-11.0.5\bin
+
+Now in above 
+Select new 
+Give variable name : JAVA_HOME
+Give path -C:\Program Files\Java\jdk-11.0.5
+Then ok
+
+Now open command prompt
+Run command java –version
+You will see -java version
+
+After download agent.jar file-
+Copy this and paste it your remote desktop server 
+Copy this  file and paste in path   -C:\agent
+Now go to cmd
+Check your present working location
+Cd  C:\agent
+Run agent command
+Command is run
+
+Now your master is connected with your slave
+
+Now create item -select free style 
+Restrict where this project can be run-paste your label
+
+Now goto build 
+Select-Execute Windows batch command
+
+Run command and build now 
+After your job is success then your script will show in slave
+Task completed
+
+
