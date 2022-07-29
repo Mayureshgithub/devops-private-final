@@ -1,0 +1,89 @@
+Setup Jenkins Agents/Slaves on Jenkins
+In this guide, I will walk you through the steps for setting up the Jenkins agent node using password and ssh keys.
+
+There are two ways of authentication for setting up the Linux Jenkins slave agents.
+
+Using username and password
+Using ssh keys.
+Also, do check out my Jenkins Docker Based Agent. You can scale and manage your Jenkins agent using Docker containers.
+
+Jenkins Agent/Slave Prerequisites
+For Jenkins agent configuration, you need to have the following in the slave machines before adding it to the master.
+
+Java should be installed on your agent server.
+A valid Linux user account that can perform the required tasks on the agent server. (preferably a sudo user if your job requires elevated privileges)
+Git should be installed as most build job requires git specific actions.
+Lets get started with the Jenkins agent node configuration.
+
+Create a Jenkins User
+It is recommended to execute all Jenkins jobs as a Jenkins user on the Jenkins agent nodes.
+
+Note: I am using Ubuntu machine as a slave. The steps will be same for other Linux flavours as well
+
+Step 1: Create a jenkins user and a password using the following command.
+
+sudo adduser jenkins --shell /bin/bash
+Type a password when prompted. The above commands should create a user and a home directory named jenkins under “/home”.
+
+Step 2: Now, login as jenkins user.
+
+su jenkins
+Step 3: Create a “jenkins_slave” directory under /home/jenkins.
+
+mkdir /home/jenkins/jenkins_slave
+Note: You can read more about adding Linux sudo users from here -> Adding sudo users and permissions on Linux
+
+Setting up Jenkins Agents/Slaves using username and password
+Step 1: Head over to Jenkins dashboard –> Manage Jenkins –> Manage Nodes
+
+Step 2: Select new node option.
+
+Jenkins add agent node
+Step 3: Give it a name, select the “permanent agent” option and click ok.
+
+Jenkins agent node name
+Step 4: Enter the details as shown in the image below and save them. For the credential box, click the add button and enter the slaves Jenkins username and password (For logging into the slave machine) that you created during the slave configuration. To know more about each option, click the question mark on the right side of each text box.
+
+Jenkins agent node configuration
+Step 4: Once you click save, Jenkins will automatically connect to the slave machine and configure it as an agent.
+
+By following the same steps, you can add multiple servers as jenkins agent nodes.
+
+Setting up Jenkins slaves using ssh keys
+Step 1: Login to the slave server as a jenkins user.
+
+Step 2: Create a .ssh directory and cd into the directory.
+
+mkdir ~/.ssh && cd ~/.ssh
+Step 3: Create an ssh key pair using the following command. Press enter for all the defaults when prompted.
+
+ssh-keygen -t rsa -C "The access key for Jenkins slaves"
+Step 4: Add the public to authorized_keys file using the following command.
+
+cat id_rsa.pub > ~/.ssh/authorized_keys
+Step 5: Now, copy the contents of the private key to the clipboard.
+
+cat id_rsa
+Add the SSH Private Key to Jenkins Credentials
+Step 1: Go to jenkins dashboard –> credentials –> Global credentials –> add credentials , select and enter all the credentials as shown below and click ok.
+
+Jenkins agent node ssh credentials
+Connect SSH Jenkins Agent to Master Node
+Step 1: Follow the first 3 steps we did for slave configuration using username and password.
+
+Step 2: Follow all the configurations in the 4th step as well. But this time, for the launch method, select the credential you created with the ssh key.
+
+Test Jenkins Agent/Slave Nodes
+To test the Jenkins agent node or slave, create a sample project and select the option as shown below.
+
+Jenkins job with agent node label.
+You need to select the node using the label option. If you start to type the letter the node list will show up.
+
+You can then run a simple, shell script operation to check if the Jenkins agent is executing the job.
+
+Conclusion
+In this tutorial, we learned how to set up slaves for Jenkins. There is no complex step involved in this configuration.
+
+When it comes to automating the process, you will need scripts and Jenkins CLI to this. I will cover that in future posts.
+
+Share if you like it and leave a comment if you have queries!!
