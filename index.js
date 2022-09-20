@@ -1,30 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Mayureshgithub 
-felixyu9
-/
-serverless-api-tutorial-code
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-serverless-api-tutorial-code/index.js /
-@felixyu9
-felixyu9 added youtube link to readme
-Latest commit 14f355c on Dec 19, 2020
- History
- 1 contributor
-148 lines (140 sloc)  4.17 KB
-
 const AWS = require('aws-sdk');
 AWS.config.update( {
   region: 'us-east-1'
